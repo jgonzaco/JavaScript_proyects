@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*Se crea estilo en css de la caja*/
+        input {
+            width: 200px;
+            height: 30px;
+            font-size: 16px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!--Se crea la caja de texto para poder modificar el fondo-->
+    <input type="text" id="caja" placeholder="Escriba aqui">
+
+    <script>
+        // Se inicializa la constante seleccionando la caja de texto con id = caja
+        const cajaTexto = document.getElementById('caja');
+
+        // Se crea la función flecha para poder cambiar el color
+        const cambiarColor = (evento) => {
+            // Se realiza operador ternario. En el que se evalúa si el evento es keyup (Se presiona algún teclado) el fondo es de color rojo, sino de color azul. 
+         evento.type === "keyup" ? cajaTexto.style.backgroundColor = 'red' : cajaTexto.style.backgroundColor = 'blue';
+        }
+
+
+        // Se une a la caja de texto con la función addEventListener el evento keydown y la función CambiarColor, es decir al presionar una tecla el fondo de texto es de color rojo
+        cajaTexto.addEventListener('keydown', cambiarColor);
+
+        // Se une a la caja de texto con la función addEventListener el evento keyup y la función CambiarColor, es decir al soltar cualquier tecla el fondo de texto es de color azul
+        cajaTexto.addEventListener('keyup', cambiarColor);
+
+        
+    </script>
+
+</body>
+</html>
