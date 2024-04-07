@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--3.	Realizar un script que al terminarse de cargar, muestre un mensaje indicando que la página se ha cargado correctamente y dando la bienvenida.-->
+    <h1 id="ejercicio3"></h1>
+    <script>
+        //Se inicializa la función
+        let bienvenida= ()=>{
+            let frase = document.getElementById("ejercicio3");// Se localiza el id.
+            frase.innerHTML = "La página se ha cargado correctamente, bienVenid@ !!!"//Se introduce la frase seleccionada.
+        }
+
+        window.addEventListener("load",bienvenida);// Se utiliza el evento load, ya que al cargar la página tiene que utilizarse la función bienvenida
+    </script>
+    
+</body>
+</html>

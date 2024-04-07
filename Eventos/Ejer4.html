@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--4.	enlazar dos botones con la misma función y luego en esta rescatar información sobre cual fue el emisor del evento-->
+<button id="boton1">Boton 1</button>
+<button id="boton2">Boton 2</button>
+    <script>
+
+        function info (event){
+            alert("El botón que se ha seleccionada ha sido " + event.target.id);// Facilita información de quién ha sido el botón que se ha pulsado.
+        }
+
+        let boton1 = document.getElementById("boton1");
+        boton1.addEventListener("click",info);
+
+        let boton2 = document.getElementById("boton2");
+        boton2.addEventListener("mousedown",info);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--2.	Coloque en la aplicación una imagen:
+    - Mientras se mantenga click pulsado cambiar por otra imagen
+    - Cuando se suelta el click debe volver a la primera imagen
+-->
+<img id="ejer2" src="./Foto/descarga.jpg">
+<script>
+
+    let imagen = document.getElementById("ejer2");// inicializo variable imagen.
+    
+
+    let foto1 = "./Foto/descarga.jpg"; // inicializo ruta de fotos
+    let foto2 = "./Foto/descarga1.jpg"
+
+function cambio(){
+    imagen.setAttribute("src",foto2);// establezco el cambio de atributo
+}
+
+function restablecer(){
+    imagen.setAttribute("src",foto1);// retauro foto
+}
+
+imagen.addEventListener("mousedown",cambio);// evento mousedown para al clicar cambiar
+imagen.addEventListener("mouseup",restablecer);//evento mouseup para desclicar para restaurar
+</script>
+</body>
+</html>

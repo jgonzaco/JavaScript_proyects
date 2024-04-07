@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--1.	Cada vez que el usuario redimensione la ventana nos indique  el ancho y alto de la ventana del navegador.-->
+    <script>
+      
+            function dimension(){
+                let ancho = window.innerWidth; // se establecen variables ancho y largo.
+                let largo = window.innerHeight;
+
+                document.write(`El ancho es ${ancho} px y el largo es ${largo}`); // se muestran en texto.
+          
+            }
+            window.addEventListener("load",dimension);// se añaden con la función addEventListener y el evento resize
+
+       
+    </script>
+
+    
+</body>
+</html>
