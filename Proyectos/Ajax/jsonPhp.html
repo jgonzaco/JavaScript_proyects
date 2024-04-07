@@ -1,0 +1,187 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ajax con PHP y JSON</title>
+
+    <!--Estilo CSS-->
+    <style>
+                  /* Estilo para el botón */
+            button {
+                background-color: blue;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+                text-transform: uppercase;
+                transition: background-color 0.3s ease;
+                margin-bottom: 2%;
+            }
+
+            /* Estilo al pasar el ratón sobre el botón */
+            button:hover {
+                background-color: #0056b3;
+            }
+
+            /* Estilo cabecera */
+            h1{
+              font-size: 50px;
+            }
+
+            /* Estilo texto */
+            label {
+          font-size: 20px; /
+      }
+
+            /*Estilo tamaño de la caja*/
+            #tipos {
+          width: 200px;
+          padding: 10px;
+          font-size: 18px;
+      }
+
+            /* Estilo para la tabla */
+            table {
+                border-collapse: collapse;
+                width: 50%;
+                border: 3px solid blue;
+
+
+                /* Estilos para las celdas de la tabla */
+                td, th {
+                border: 3px solid blue;
+                padding: 8px;
+                text-align: left;
+                }
+    </style>
+
+    <!--Explicación Proyecto JavaScript-->
+    <script>
+      window.addEventListener("load", inicio); // Se ejecuta la función cuando se carga la página
+
+      // Se ejecuta la función cuando se carga el DOM
+      document.addEventListener("DOMContentLoaded", function () {
+        // Se instancia el objeto XMLHttpRequest para realizar una solicitud al servidor
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          // Se ejecuta función cuando se cambia de estado la solicitud
+          if (this.readyState == 4 && this.status == 200) {
+            // Se verifica que la petición ha sido correcta
+            console.log(this.responseText);
+            var array = JSON.parse(this.responseText); // Se parsean los datos de la base de datos
+
+            //Localizo la etiqueta de la tabla.
+            let tabla = document.getElementById("tabla");
+
+            //Localizo el tableBody de la tabla.
+            let tableBodyAntiguo = document.getElementById("tableBody");
+
+            /*Creamos el nuevo tableBody y le asignamos el mismo id
+          para futuras iteraciones.*/
+            let tableBodyNuevo = document.createElement("tbody");
+            tableBodyNuevo.id = "tableBody";
+            for (let i = 0; i < array.length; i++) {
+              // Se recorre el array para crear las filas y columnas
+              let fila = document.createElement("tr"); // Se crea el tr
+              for (let j = 0; j < 3; j++) {
+                // Se recorren las 3 columnas y se les asigna el valor de la base de datos
+                let columna = document.createElement("td");
+                if (j === 0) {
+                  columna.innerHTML = array[i].nombre;
+                } else if (j === 1) {
+                  columna.innerHTML = array[i].tipo;
+                } else {
+                  columna.innerHTML = array[i].generacion;
+                }
+                fila.appendChild(columna); // Se une las filas con las columnas
+              }
+              tableBodyNuevo.appendChild(fila); // Se une filas y columnas con la tabla.
+            }
+            tabla.replaceChild(tableBodyNuevo, tableBodyAntiguo); // Se reemplaza la tabla antigua por la nueva
+          }
+        };
+        xhr.open("GET", "inicio.php", true); // Se realiza la petición GET al archivo php inicio.php
+        xhr.send(); // Envía solicitud
+      });
+
+      function inicio() {
+        // Función para clickar el botón mostrar y se ejecute la función mostrar.
+        document.getElementById("mostrar").addEventListener("click", mostrar); //
+      }
+
+      function mostrar() {
+        let tipos = document.getElementById("tipos").value; // Se obtiene el tipo de Pokémon que se ha seleccionado
+        let objeto = {
+          // Se establece la variable objeto con los parámetros a enviar
+          tabla: "pk", // nombre de la tabla
+          valor: tipos, // Valor seleccionado de la tabla
+        };
+
+        let xhr = new XMLHttpRequest(); // Se instancia el objeto XMLHttpRequest para realizar una solicitud al servidor
+
+        xhr.onreadystatechange = function () {
+          // Se ejecuta función cuando se cambia de estado la solicitud
+          if (this.readyState == 4 && this.status == 200) {
+            // Se verifica que la petición ha sido correcta
+            var array = JSON.parse(this.responseText); // Se parsean los datos de la base de datos
+            let tabla = document.getElementById("tabla"); //Localizo la etiqueta de la tabla.
+            let tableBodyAntiguo = document.getElementById("tableBody"); //Localizo el tableBody de la tabla.
+
+            /*Creamos el nuevo tableBody y le asignamos el mismo id
+          para futuras iteraciones.*/
+            let tableBodyNuevo = document.createElement("tbody");
+            tableBodyNuevo.id = "tableBody";
+            for (let i = 0; i < array.length; i++) {
+              // Se recorre el array para crear las filas y columnas
+              let fila = document.createElement("tr"); // Se crea el tr
+              for (let j = 0; j < 3; j++) {
+                // Se recorren las 3 columnas y se les asigna el valor de la base de datos
+                let columna = document.createElement("td");
+                if (j === 0) {
+                  columna.innerHTML = array[i].nombre;
+                } else if (j === 1) {
+                  columna.innerHTML = array[i].tipo;
+                } else {
+                  columna.innerHTML = array[i].generacion;
+                }
+                fila.appendChild(columna); // Se une las filas con las columnas
+              }
+              tableBodyNuevo.appendChild(fila); // Se une filas y columnas con la tabla.
+            }
+            tabla.replaceChild(tableBodyNuevo, tableBodyAntiguo); // Se reemplaza la tabla antigua por la nueva
+          }
+        };
+        let parametros = JSON.stringify(objeto); // Se convierte el objeto a formato JSON
+        xhr.open("GET", "baseDatos.php?objeto=" + parametros, true); // Se realiza la petición GET al archivo php baseDatos.php
+        xhr.send(); // Envía solicitud
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>Tipos de Pokémon:</h1>
+    <label>Seleccione el tipo de pokemon:</label>
+    <input
+      type="text"
+      id="tipos"
+      placeholder="Tipo de pokémon"
+    /><!--Creación de la tabla de los Pokémon-->
+    <button id="mostrar">Enviar</button>
+    <div id="texto">
+      <table id="tabla">
+        <thead>
+          <tr>
+            <th>Pokemon</th>
+            <th>Tipo</th>
+            <th>Generación</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Filas y celdas de datos irán aquí -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
