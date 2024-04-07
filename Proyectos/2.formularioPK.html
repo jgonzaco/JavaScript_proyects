@@ -1,0 +1,228 @@
+<!DOCTYPE html5>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Entrenador Pokémon</title>
+    <style>
+        
+         /* Estilos para el encabezado */
+h1{
+    text-align: center;
+    font-size: 40px;
+}
+        /* Estilos para el formulario */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para las etiquetas */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Estilos para los campos de entrada */
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="reset"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Estilos para los botones */
+input[type="reset"],
+input[type="submit"],
+button {
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Estilos para el texto de errores */
+#errores {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Estilos para los botones de control de tiempo */
+#parado,
+#retomar {
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <h1>Formulario Entrenador Pokémon</h1>
+
+    <!-- Formulario Entrenador Pokémon -->
+    <form id="entrenadorPokemon">
+        <label>Nombre:</label><input type="text" id="nombre" required>
+        <br><br>
+        <label>Apellidos:</label><input type="text" id="apellidos" minlength="3" maxlength="40">
+        <br><br>
+        <label>Fecha Nacimiento:</label><input type="date" id="fnacimiento" required>
+        <br><br>
+        <label>Correo Electrónico:</label><input type="email" id="email" required>
+        <br><br>
+        <label>Teléfono: </label> <input type="number" name="telefono" id="telefono" minlength="9" required>
+        <br><br>
+        <label>Pokémon inicial de preferencia:</label><input type="radio" name="primerPokemon" value="Pikachu" required>Pikachu
+                                              </label><input type="radio" name="primerPokemon" value="Bulbasaur">Bulbasaur
+                                              </label><input type="radio" name="primerPokemon" value="Squirtle">Squirtle
+                                              </label><input type="radio" name="primerPokemon" value="Charmander">Charmander
+        <br><br>
+        <input type="submit" value="Enviar" name="enviar" id="enviar">
+        <input type ="reset" value="Borrar">
+        <br><br><br><br>
+        <button onclick="imprimir()">Imprimir Formulario</button>
+    </form>
+
+    <!-- Párrafo de errores -->
+    <p id="errores"></p>
+
+    <!-- Reloj -->
+    <h2 id="reloj"></h2>
+
+    <!-- Botón parar el reloj -->
+    <button id="parado">Parar el tiempo</button>
+    <!-- Botón reanuadar reloj -->
+    <button id="retomar"> Retomar el tiempo</button>
+
+    <script>
+
+        /*
+
+            3- validación
+                    •	reportValidity ()  o checkValidity
+
+        */
+
+        // Se inicializan variables
+        let formulario = document.getElementById("entrenadorPokemon");
+        let nombre = document.getElementById("nombre");
+        let apellidos = document.getElementById("apellidos");
+        let fnacimiento = document.getElementById("fnacimiento");
+        let email = document.getElementById("email");
+        let telefono = document.getElementById("telefono");
+        let errores = document.getElementById("errores");
+
+// Se crea la función de validar
+function validar() {
+    if (!formulario.reportValidity()) {// Verifica si el formulario es válido
+        let mensajeError = []; // Se crea un arry de errores
+
+        //Validar nombre no está vacío
+        if (nombre.value === null || nombre.value === "") {
+            mensajeError.push("Introduzca su nombre");// introduce errores en el array
+        }
+
+        //Validar Apellidos no vacíos
+        if (apellidos.value === null || apellidos.value === "") {// verificación valor vacío
+            mensajeError.push("Introduzca por lo menos un apellido");// introduce errores en el array
+        }
+
+        //Validar fecha nacimiento
+        let nacimiento = new Date(fnacimiento.value);// variable de fecha nacimiento del usuario
+        let fechaActual = new Date();// variable fecha actual
+
+        if(nacimiento.getTime() >= fechaActual.getTime()){// Se verifica que la fecha actual no sea superior a la fecha de nacimiento
+            mensajeError.push("No puede tener una fecha de nacimiento superior al día de hoy");// introduce errores en el array
+        }else if(isNaN(nacimiento.getTime())){// si la fecha es un texto, se muestra el siguiente error
+            mensajeError.push("Introduzca una Fecha de nacimiento");// introduce errores en el array
+        }
+
+        //Validar mail
+        let mail=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\. \w{2,3})+$/  //Expresión regular para el correo
+            if(!mail.test(email.value)){// veririca si el correo electrónico no coince con la expresión regular
+                mensajeError.push("Introduzca un correo electrónico correcto");// introduce errores en el array
+            }
+        
+        //Validar teléfono
+        if(isNaN(telefono.value) || telefono.value.length !== 9){// Utilizo expresión regular para asegurarme que empieza por 9, 7 o 6
+            mensajeError.push("Introduzca un número de contacto correcto");// introduce errores en el array
+        }
+
+        // Validar Pokémon de preferencia
+        let pokemonPreferencia = document.querySelector('input[name="primerPokemon"]:checked');// se inicializa la variable pokemonPreferencia
+        if(!pokemonPreferencia){// Se verifica que hay Pokémon de preferencia
+            mensajeError.push("Tiene que elegir un Pokémon inicial");// introduce errores en el array
+        }
+
+        errores.innerHTML = mensajeError.join(", ");// Une los erorres y los separa por una coma
+
+        return false;
+    }else{// Muestra formulario enviado, si todo está bien.
+        errores.innerHTML = "Formulario enviado";
+    }
+}
+        // Conecta el botón enviar con la función validar, ya que cuando se pulse la función validar se ejecutará
+        document.getElementById("enviar").addEventListener("click",validar);
+
+
+/*
+             2- Manipulación del BOM
+                •	control de tiempo
+
+*/
+
+function iniciar() {
+    let fecha = new Date();// Se inicializa la fecha actual
+    document.getElementById("reloj").textContent = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();// Se obtiene la hora actual
+}
+
+// Iniciar el intervalo al cargar la página
+let intervalo = setInterval(iniciar, 1000);
+
+
+// Para el intervalo del tiempo
+function parar() {
+    clearInterval(intervalo);// Detiene el intervalo
+}
+
+// Conecta el botón parado con la función parar, ya que cuando se pulse el botón la función parar se ejecutará
+let paradito = document.getElementById("parado").addEventListener("click", parar);
+
+// Función para retomar tiempo
+function retoma() {
+    intervalo = setInterval(iniciar, 1000); // Se asigna a la variable intervalo para inicializar el tiempo
+}
+
+// Conecta el botón retomar con la función retoma, ya que cuando se pulse el botón la función retoma se ejecutará
+document.getElementById("retomar").addEventListener("click", retoma);
+
+
+        //Imprimir Formulario Entrenador Pokémon (utilización del BOM)
+        function imprimir(){
+                window.print();
+        }
+
+    </script>
+</body>
+</html>

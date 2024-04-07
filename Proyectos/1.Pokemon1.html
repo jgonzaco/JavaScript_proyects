@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+/* Estilos para la tabla */
+#pokemon {
+    border-collapse: collapse; 
+    width: 100%; 
+}
+
+/* Estilos para las celdas de la tabla */
+#pokemon td, #pokemon th {
+    border: 3px solid blue;
+    padding: 8px; 
+    text-align: left;
+}
+
+#pokemon td img {
+    width: 150px; 
+    height: 100px; 
+    background-size: cover; 
+}
+
+/* Estilos para botones */
+button {
+    background-color: blue; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    transition: background-color 0.3s ease;
+    margin-top: 2%;
+}
+
+/* Estilo al pasar el ratón sobre el botón */
+button:hover {
+    background-color: #0056b3; 
+
+}
+
+/* Tamaño de fuente del título */
+h1 {
+    font-size: 36px; 
+}
+
+/* Aumenta el tamaño de las letras menos el encabezado h1 y botones */
+body *:not(h1):not(button) {
+    font-size: 20px; 
+}
+    </style>
+
+    <title>La mochila de Pokémons</title>
+</head>
+<body>
+    <h1>Pokémons Capturados</h1>
+
+     <!-- Tabla que muestra los pokémons con nombre, tipo y nivel -->
+    <table id="pokemon" border="1">
+        <tr id="titulos">
+            <td>Pokemon</td>
+            <td>Tipo</td>
+            <td>Nivel</td>
+        </tr>
+    </table>
+
+    <br>
+        <!-- Creo un bbotón para capturara el pokemon que se quiere introducir-->
+        <button id="capturar">Capturar Nuevo Pokemon</button> 
+    
+        <!-- Creo un aviso de un máximo de pokémons que se pueden introducir-->
+        <label id="atencion">(Solo se podrán añadir 6 pokemons)</label></br>
+    <br>
+        <!-- Campos para introducir todos los datos del nuevo Pokémon-->
+        <label>Pokémon:</label><input type="text" id="nombre">
+        <label>Tipo:</label><input type="text" id="tipo">
+        <label>Nivel:</label><input type="number" id="nivel">
+
+</br><br>
+
+        <!-- Creo un botón para eliminar el Pokémon que se indica en el id eliminar Pokémon, en este caso lo he mencionado enviar a PC de Bill, ya que se quiere simular que es una mochila de Pokémons -->
+        <button id="eliminar">Enviar a PC de Bill</button> 
+        <input type="text" id="eliminarPokemon"><!--Campo de referencia del Pokémon de la tabla que se quiere eliminar-->
+
+<br><br>
+
+        <!-- Creo un botón para cambiar el Pokémon que se encuentra en la tabla-->
+        <div id="padre">
+                <button id="cambiar">Cambiar Pokemon</button>
+                <label>Pokémon a cambiar:</label><input type="text" id="nombreCambio"><!--Campo donde se seleccina el nombre del Pokémon que quiero cambiar-->
+        </div>
+
+    <br><br><br><br>
+    
+    <!--Botón para que se pueda ir a otra ventana, siendo ésta, una ventana flotante, la cual lleva a la ventana de formularioPK.html-->
+    <button onclick="formulario()">Formulario Entrenador Pokémon</button>
+
+    <!--Botón para que trae al frente la ventana flotante-->
+    <button onclick="foco()">Traer al frente Formulario</button>
+
+    <!--Botón para que cierra la ventana flotante-->
+    <button onclick="cerrar()">Cerrar Formulario</button>
+
+
+
+
+
+    <script>
+
+/*
+1- Manipulación del DOM 
+•	Buscar elementos
+•	movernos entre los elementos del DOM Acceder a padre, hijo…
+•	crear y borrar elementos
+
+*/
+
+
+            //Indentifico la tabla para que las funciones puedan utilizarlas
+            let tabla = document.getElementById("pokemon");
+
+        // Se crea la función de insertar Pokémon.
+        let insertar = () =>{
+           
+            // Incializo variables
+            let nombrePk  = document.getElementById("nombre").value;
+            
+            if(nombrePk !== ""){// Condición que se ha introducido un nombre
+            let tipo  = document.getElementById("tipo").value;
+            let nivel = document.getElementById("nivel").value;
+
+            //Se crea la etiqueta tr
+            let etiqueta = document.createElement("tr");
+            
+            //Se le asigna el nombre del Pokémon a su id
+            etiqueta.setAttribute("id",nombrePk);
+
+            // se crean las etiquetas td
+            col1 = document.createElement("td");
+            col2 = document.createElement("td");
+            col3 = document.createElement("td");
+            col4 = document.createElement("td");
+            //col5 = document.createElement("td");
+
+            // Introduzco en la nueva celda el valor del Pokemon (nombre, tipo y nivel)
+            col1.innerHTML = nombrePk;
+            col2.innerHTML = tipo;
+            col3.innerHTML = nivel;
+            col4.innerHTML = "<button onclick='subir(this)'>+</button><button onclick='bajar(this)'>-</button>"; // Se crean los botones para subir y bajar las filas en la tabla
+
+            // Uno los TDs con TR
+            let uniontrtd1 = etiqueta.appendChild(col1);
+            let uniontrtd2 = etiqueta.appendChild(col2);
+            let uniontrtd3 = etiqueta.appendChild(col3);
+            let uniontrtd4 = etiqueta.appendChild(col4);
+
+            // UNO el TR a la tabla
+            tabla.appendChild(etiqueta);
+
+            //  Se limpia los campos a la hora de volver a introducir un nuevo Pokémon
+            document.getElementById("nombre").value="";
+            document.getElementById("tipo").value="";
+            document.getElementById("nivel").value="";
+
+
+             // Se crea una condición, que como en el juego, solamente se puede tener 6 pokémons como en la mochila de los Pokémons. Cuando exista 6 (en este caso 7 debido a que la primera fila cuenta como uno), se desabilitará el botón Capturar Nuevo Pokemon.
+             if(tabla.rows.length === 7){
+               document.getElementById("capturar").disabled = true;
+            }
+        }
+        }
+        
+        // Me sitúo en botón capturar y utilizo el evento addEventListener, en el que clicando se ejecuta la función introducir.
+        document.getElementById("capturar").addEventListener("click",insertar);
+
+
+        // Función para subir una fila en la tabla con el botón +
+        let subir = (boton) =>{ 
+            
+                // Me ubico en la fila actual del botón
+                let fila =  boton.parentNode.parentNode;// Se accede al elemento padre (td) del botón y luego al elemento padre (tr) de la celda
+
+                if(fila.previousElementSibling && fila.previousElementSibling.childNodes[0] !== tabla.rows[0]){// compruebo que existe un elemento tr anterior y sino no es la fila del encabezado se desplaza arriba
+                    fila.parentNode.insertBefore(fila,fila.previousElementSibling); 
+                }
+            }
+
+            // Función para bajar una fila en la tabla con el botón -
+            let bajar = (boton) =>{  
+                
+                // Me ubico en la fila actual del botón
+                let fila =  boton.parentNode.parentNode;
+                
+                if(fila.nextElementSibling){// comprubo que existe un elemento tr siguiente
+                    fila.parentNode.insertBefore(fila.nextElementSibling, fila); // si existe, se inserta la línea por debajo.
+                }
+            }
+
+        
+        // Se crea la función de eliminar Pokémon de la tabla, es decir, enviarlo al PC de Bill.
+        let eliminar = ()=>{
+            let nombre = document.getElementById("eliminarPokemon").value;// Se establece el nombre del Pokémon que se quiere eliminar
+            
+
+            //Verifico que existe el nombre del Pokémon que se ha introducido.
+            if(nombre){// Si existe, se elimina.
+                for(let i = 1; i < tabla.rows.length; i++) {// Recorro las filas para encontrar al pokémon que se ha introducido
+                let busqueda = tabla.rows[i].cells[0].innerHTML; // Se obtiene el nombre del Pokémon de la fila actual
+
+                if(busqueda === nombre) {// Si el nombre del Pokémon coincide con el nombre introducido
+                    document.getElementById("capturar").disabled = false; // Habilito el botón capturar nuevo Pokémon para que en el caso de que haya <6 pokémons se pueda introducir nuevos Pokémons
+                    tabla.rows[i].remove(); // Elimino la fila del Pokémon de la tabla
+                    break;// Hago el break para que no siga ejecutando código ya que quiero que solamente se ejecute una vez
+                }
+            }
+            }else{// Si no existe el nombre del Pokémon que se ha introducido, te avisa.
+                    alert("El Pokémon introducido no está correcto. Revise el que quiere eliminar.");
+                }
+
+                //  Limpio el campo de búsqueda
+                document.getElementById("eliminarPokemon").value="";
+      
+        }
+        
+        //Enlazo el botón eliminar con el evento click para poder seleccionar el Pokémon que quiero eliminar.
+        document.getElementById("eliminar").addEventListener("click",eliminar);
+        
+
+        // Se crea una función que al pulsar el botón cambiar Pokémon aparezcan 3 cajas a la derecha
+            let cajas = () =>{
+                    //Localizo la etiqueta del div donde quiero añadir al lado las tres cajas
+                    let padre = document.getElementById('padre');
+
+                    // Creo cajas de texto
+                    let cambioNombre = document.createElement("input");
+                    let cambioTipo = document.createElement("input");
+                    let cambioNivel = document.createElement("input");
+
+                    // Se crean los atributos
+                    cambioNombre.setAttribute("type","text");
+                    cambioNombre.setAttribute("id","cambioNombre");
+                    cambioTipo.setAttribute("type","text");
+                    cambioTipo.setAttribute("id","cambioTipo");
+                    cambioNivel.setAttribute("type","number");
+                    cambioNivel.setAttribute("id","cambioNivel");
+
+                    // Uno las cajas al div
+                    padre.appendChild(cambioNombre);
+                    padre.appendChild(cambioTipo);
+                    padre.appendChild(cambioNivel);
+
+                // Para que solamente aparezca una vez las cajas, se utiliza remover el evento click.
+                document.getElementById("cambiar").removeEventListener("click", cajas);
+                
+            }
+        //Enlazo el botón cambiar Pokémon, con el evento click para poder introducir las cajas para introducir los valores del nuevo Pokémon que se ha cambiado (como una transferencia Pokémon, en el cambiar un pokémon por otro).
+        document.getElementById("cambiar").addEventListener("click",cajas);
+
+
+        // Se crea una nueva función que cuando se clicke en cambiar, se cambie el pokemon que se quiera
+        let cambio = () => {
+            //Localizo el Pokemon que quiero cambiar
+            let nombrePokemon = document.getElementById("nombreCambio").value;
+            
+            //Localizo el nombre, tipo y nivel que quiero cambiar.
+            let nuevoNombre = document.getElementById("cambioNombre").value;
+            let nuevoTipo = document.getElementById("cambioTipo").value;
+            let nuevoNivel = document.getElementById("cambioNivel").value;
+
+            // Se realiza una condición para verificar si se ha introducido un nombre
+            if(nombrePokemon !== ""){
+            // Recorro la tabla 
+            for(let i = 1; i < tabla.rows.length; i++) {// Se recorre la tabla para encontrar el pokémon que se quiere cambiar
+                let busqueda = tabla.rows[i].cells[0].innerHTML; 
+
+                if(busqueda === nombrePokemon) {// Si coincide el Pokemon que quiero cambiar para realizar todo el cambio
+
+                    // Sustituyo dentro de las celdas, los valores que se quieren cambiar por los nuevos que se introducen.
+                    tabla.rows[i].cells[0].innerHTML = nuevoNombre;
+                    tabla.rows[i].cells[1].innerHTML = nuevoTipo;
+                    tabla.rows[i].cells[2].innerHTML = nuevoNivel;
+                    break;// Hago el break para que no siga ejecutando código ya que quiero que solamente se ejecute una vez
+                }
+            }
+        }else{// En el caso de que no se haya introducido ningún Pokémon, se muestra el siguiente mensaje
+            alert("Introduzca un pokemon")
+        }
+        }
+
+         //Enlazo el botón cambiar con el evento click para poder cambiar los nuevos elementos introducidos por los anteriores que se quieren cambiar.
+        document.getElementById("cambiar").addEventListener("click",cambio);
+
+
+
+
+/*2- Manipulación del BOM
+    •	Window
+    */
+
+
+            //Inicializo variable de la nueva ventana
+            let ventanaAbierta;
+            
+            //Creo la función del nuevo formulario, siendo una nueva página, donde va a ser un formulario donde se realizará las validaciones JS.
+            function formulario(){                
+                ventanaAbierta=window.open("./2.formularioPK.html", "VentanaFlotante", "width=600,height=400,left=100,top=100");    
+            }
+
+            //Se crea la función cerrar para poder manejar la ventana flotante creada.
+            function cerrar(){
+                ventanaAbierta.close();
+            }
+
+            // Se le facilita un foco para poder localizarlo rápidamente, si quiero añadir algún Pokémon adicional.
+            function foco(){
+                ventanaAbierta.focus();
+            }
+    </script>
+    
+</body>
+</html>
