@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrera de Coches</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style type="text/css">
+      /*Estilo dimensión coche 1*/
+      #c1 {
+        width: 20%;
+        height: 20%;
+        position: relative;
+      }
+      /*Estilo dimensión coche 2*/
+      #c2 {
+        width: 20%;
+        height: 20%;
+        position: relative;
+      }
+      /*Estilo dimensión meta*/
+      #meta {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-top: 2px solid black;
+        width: 25%;
+      }
+    </style>
+  </head>
+  <body>
+    <!--Título de la página-->
+    <h1>Carrera de coches</h1>
+
+    <!--Imagen coche 1-->
+    <img src="./c1.png" id="c1" />
+    <br />
+    <!--Imagen coche 2-->
+    <img src="./c2.png" id="c2" />
+
+    <br /><br />
+
+    <!--Texto para mostrar los números aleatorios-->
+    <h3 id="numeros">0</h3>
+
+    <!-- Botón para iniciar la carrera -->
+    <button id="pulsar">Pulsar</button>
+
+    <!-- Botón para reiniciar la carrera -->
+    <button id="reiniciar">Reiniciar</button>
+
+    <!-- Imagen de la meta -->
+    <img id="meta" src="./meta.png" />
+
+    <script>
+      /*
+6- jquery
+•	Efectos
+o	Hacer uno o dos efectos con jquery
+
+
+*/
+
+      // Se inicializan las variables de los movimientos de los coches.
+      let contadorPar = 0;
+      let contadorImpar = 0;
+
+      // Función carrera
+      let carrera = () => {
+        // Se inicializa las variables de los números aleatorios y se parsean a interger para poder utilizar esos números.
+        let numeros = document.getElementById("numeros");
+        let numero = parseInt(
+          (numeros.innerHTML = Math.floor(Math.random() * 21))
+        );
+
+        let porcentajeMeta = 75; // Se fija el porcenetaje de la meta.
+        // Se calcula la posición de la meta
+        let anchoPantalla = $(window).width(); // ancho de la pantalla
+        let posicionMeta = (anchoPantalla * porcentajeMeta) / 100; // Se calcula la posición de la meta.
+
+        // Se inicializa la posición actual de los coches.
+        let posicionC1 = $("#c1").position().left; // Posición Coche1
+        let posicionC2 = $("#c2").position().left; // Posición Coche2
+
+        let duracionAnimacion = 1000; // Duración de la animación en milisegundos
+
+        if (contadorPar < 7 && contadorImpar < 7) {
+          // Se verifica si cada coche no ha realizado 7 movimientos.
+
+          if (numero % 2 === 0) {
+            // Se verifica que si el número aleatorio es par
+            let nuevaPosicionPar = posicionC1 + posicionMeta / 7; // Se calcula la posición del coche par (que es Hamilton)
+            $("#c1").animate(
+              { left: nuevaPosicionPar },
+              duracionAnimacion,
+              function () {
+                // Se crea la animación del coche a la nueva posición
+                contadorPar++; // Se crea la función de sumar el contador del coche par
+                if (contadorPar === 7) {
+                  // Si el coche 1 ha conseguido realizar los 7 movimientos habrá ganado la carrera y se mostrará el siguiente mensaje
+                  alert("METAAAAAAAA !!!!!! Ha ganado Hamilton");
+                }
+              }
+            );
+          } else {
+            // Se verifica que si el número aleatorio es impar
+            let nuevaPosicionImpar = posicionC2 + posicionMeta / 7; // Se calcula la posición del coche par (que es ALONSO)
+            $("#c2").animate(
+              { left: nuevaPosicionImpar },
+              duracionAnimacion,
+              function () {
+                // Se crea la animación del coche a la nueva posición
+                contadorImpar++; // Se crea la función de sumar el contador del coche impar
+                if (contadorImpar === 7) {
+                  // Si el coche 1 ha conseguido realizar los 7 movimientos habrá ganado la carrera y se mostrará el siguiente mensaje
+                  alert("METAAAAAAAA !!!!!! Ha ganado ALONSO");
+                }
+              }
+            );
+          }
+        } else {
+          reiniciar(); // Si ambos coches han completado 7 movimientos, se reinicia la carrera.
+        }
+      };
+
+      // Función reiniciar carrera
+      let reiniciar = () => {
+        $("#c1").stop().css("left", "0"); // Devuelve el coche1 a su posición inicial
+        $("#c2").stop().css("left", "0"); // Devuelve el coche2 a su posición inicial
+        contadorPar = 0; // Reinicia el contadorPar
+        contadorImpar = 0; // Reinicia el contadorImpar
+      };
+
+      $(document).ready(function () {
+        // Espera que el HTML este cargado para ejecutar código JQuery
+        $("#pulsar").click(carrera); // Al clicar pulsar, comienza la carrera.
+        $("#reiniciar").click(reiniciar); // Al clicar en reiniciar, se reinicia la carrera
+      });
+    </script>
+  </body>
+</html>
