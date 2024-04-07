@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla con Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+        img {
+            max-width: 30%;
+            max-height: 30%;
+            height: auto;
+            margin: 0 auto;
+
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+<table id="tabla">
+    <tbody id="tableBody">
+        <tr>
+            <td><img src="./images/imagen1.jpg" id="1" alt="Imagen 1" name="impar" class="num"></td>
+            <td><img src="./images/imagen2.jpg" alt="Imagen 2" name="par" class="num"></td>
+            <td><img src="./images/imagen3.jpg" alt="Imagen 3" name="impar" class="num"></td>
+            <td><img src="./images/imagen4.jpg" alt="Imagen 4" name="par" class="num"></td>
+            <td><img src="./images/imagen5.jpg" alt="Imagen 5" name="impar" class="num"></td>
+        </tr>
+        <tr>
+            <td><img src="./images/imagen6.jpg" alt="Imagen 6" name="par" class="num"></td>
+            <td><img src="./images/imagen7.jpg" alt="Imagen 7" name="impar" class="num"></td>
+            <td><img src="./images/imagen8.jpg" alt="Imagen 8" name="par" class="num"></td>
+            <td><img src="./images/imagen9.jpg" alt="Imagen 9" name="impar" class="num"></td>
+            <td><img src="./images/imagen10.jpg" alt="Imagen 10" name="par" class="num"></td>
+        </tr>
+        <tr>
+            <td><img src="./images/imagen11.jpg" alt="Imagen 11" name="impar" class="num"></td>
+            <td><img src="./images/imagen12.jpg" alt="Imagen 12" name="par" class="num"></td>
+            <td><img src="./images/imagen13.jpg" alt="Imagen 13" name="impar" class="num"></td>
+            <td><img src="./images/imagen14.jpg" alt="Imagen 14" name="par" class="num"></td>
+            <td><img src="./images/imagen15.jpg" alt="Imagen 15" name="impar" class="num"></td>
+        </tr>
+    </tbody>
+</table>
+
+<button onclick=handlePar()>Imágenes Pares</button>
+<button onclick=handleImpar()>Imágenes Impares</button>
+
+    <script>
+        const handleImpar = () => {
+          //Localizo la etiqueta de la tabla.
+          let tabla = document.getElementById('tabla');
+          //Localizo el tableBody de la tabla.
+          let tableBodyAntiguo = document.getElementById('tableBody');
+          /*Creamos el nuevo tableBody y le asignamos el mismo id
+          para futuras iteraciones.*/ 
+          let tableBodyNuevo = document.createElement('tbody');
+          tableBodyNuevo.id = 'tableBody';
+          //Creo la variable posicion para saber si la posición es par o impar.
+          let posicion = 1;
+          //Recorro para crear tres filas.
+          for(let i=0; i<3; i++){
+            //Creo la fila
+            let fila = document.createElement('tr');
+            //Recorro para crear cinco columnas.
+            for(let j=0; j<5;j++){
+              //Creo la columna  
+              let columna = document.createElement('td');
+              /*Verifico si la posición de la tabla es par o impar. Sí es impar, 
+              creamos la imagen y la indexamos con appendChild a la columna. Sí
+              es par, indexaremos de la misma manera un parrafo.*/
+              if(posicion%2 !== 0){
+                let imagen = document.createElement('img');
+                imagen.src = `./images/imagen${posicion}.jpg`
+                columna.appendChild(imagen);
+              }else{
+                let parrafo = document.createElement('p');
+                parrafo.textContent = "Imagen par no se puede mostrar";
+                columna.appendChild(parrafo);
+              }
+              //Sumamos uno a la variable posicion para que pase a la siguiente posición
+              posicion++;
+              //Indexamos la columna, que ya contiene la imagen, dentro de la fila
+              fila.appendChild(columna);
+            }
+            //Indexamos en nuestro nuevo tableBody la fila
+            tableBodyNuevo.appendChild(fila);
+          }
+          //Reemplazamos el tableBodyAntiguo por el nuevo
+          tabla.replaceChild(tableBodyNuevo,tableBodyAntiguo);
+
+        }
+
+        const handlePar = () => {
+          //Localizo la etiqueta de la tabla.
+          let tabla = document.getElementById('tabla');
+          //Localizo el tableBody de la tabla.
+          let tableBodyAntiguo = document.getElementById('tableBody');
+          /*Creamos el nuevo tableBody y le asignamos el mismo id
+          para futuras iteraciones.*/ 
+          let tableBodyNuevo = document.createElement('tbody');
+          tableBodyNuevo.id = 'tableBody';
+          //Creo la variable posicion para saber si la posición es par o impar.
+          let posicion = 1;
+          //Recorro para crear tres filas.
+          for(let i=0; i<3; i++){
+            //Creo la fila
+            let fila = document.createElement('tr');
+            //Recorro para crear cinco columnas.
+            for(let j=0; j<5;j++){
+              //Creo la columna  
+              let columna = document.createElement('td');
+              /*Verifico si la posición de la tabla es par o impar. Sí es par, 
+              creamos la imagen y la indexamos con appendChild a la columna. Sí
+              es impar, indexaremos de la misma manera un parrafo.*/
+              if(posicion%2 === 0){
+                let imagen = document.createElement('img');
+                imagen.src = `./images/imagen${posicion}.jpg`
+                columna.appendChild(imagen);
+              }else{
+                let parrafo = document.createElement('p');
+                parrafo.textContent = "Imagen impar no se puede mostrar";
+                columna.appendChild(parrafo);
+              }
+              //Sumamos uno a la variable posicion para que pase a la siguiente posición
+              posicion++;
+              //Indexamos la columna, que ya contiene la imagen, dentro de la fila
+              fila.appendChild(columna);
+            }
+            //Indexamos en nuestro nuevo tableBody la fila
+            tableBodyNuevo.appendChild(fila);
+          }
+          //Reemplazamos el tableBodyAntiguo por el nuevo
+          tabla.replaceChild(tableBodyNuevo,tableBodyAntiguo);
+
+        }
+    </script>
+</body>
+</html>
