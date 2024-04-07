@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*2.	Confeccionar un programa que muestre en que cuatrimestre del año nos encontramos. Para esto obtener el mes*/
+        let fecha=new Date();// Se inicializa la función fecha
+
+        let mes=fecha.getMonth(); // Se crea la variable mes con la función mes. 
+
+        alert(mes);
+
+        if(mes==0 || mes==1 || mes==2 || mes==3){
+            document.write("Se encuentra en el primer cuatrimestre");
+        }else if(mes==4 || mes==5 || mes==6 || mes==7){
+            document.write("Se encuentra en el segundo cuatrimestre");
+        }else if(mes==8 || mes==9 || mes==10 || mes==11){
+            document.write("Se encuentra en el tercer cuatrimestre");
+        }
+    </script>
+</body>
+</html>

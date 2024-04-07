@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*4. Muestra los meses, días y años que tienes, de forma dinámica de forma que se adapte al día actual.*/
+
+        // Solicito la edad
+        let edad = parseInt(prompt("Introduzca su edad"));
+
+        // Obtener la fecha actual
+        let fecha = new Date();
+
+        // Calcular el año de nacimiento
+    
+        document.write("Los años que tiene es " + edad + " años<br>");
+
+        // Solicitar el mes de nacimiento
+        let mesNacimiento = parseInt(prompt("Introduzca su mes de nacimiento en número del 1 al 12"));
+
+        // Calcular los meses que ha vivido
+        let mesesVividos = 12 - mesNacimiento;
+        document.write("Los meses que has vivido han sido " + mesesVividos + " meses <br>");
+
+        // Calcular los días que ha vivido (días del mes actual)
+        let diasVividos = fecha.getDate();
+        document.write("Los días que has vivido este mes son " + diasVividos + " dias <br>");
+    </script>
+</body>
+</html>

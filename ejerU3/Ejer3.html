@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*3.	Calcula tu edad, sin utiliza ningún método, trabajando con los milisegundos*/
+
+        let edad=parseInt(prompt("Introduzca su edad y se lo calculamos en milisegundo"));// Solicito la edad
+
+        let fecha=new Date();// inicializo función date
+        let milisegundos=fecha.getTime();// utilizo el método getTime que se usa en milisegundo desde 1970, es más aconsejable.
+        document.write(milisegundos + "<br>");// Veo los milisegundos que hay hasta la fecha de hoy
+        let edadMilisegundos=milisegundos-(edad*365*24*60*60*1000);// Hago la resta entre los milisegundos que hay menos la edad en milisegundo.
+
+    
+        document.write("Milisegundo que tiene mi edad " + edadMilisegundos+"<br>");// Muestro por pantalla
+
+        document.write(fecha.toDateString());// Pruebas que realizo
+    </script>
+</body>
+</html>

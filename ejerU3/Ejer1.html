@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    /*1.	Haz que el ordenador te salude educadamente dándote los buenos días, buenas tardes o buenas noches dependiendo de la hora que sea. Usa una función*/
+
+    function saludo(){// incializo la función
+        let fecha = new Date();// creo la función date
+       let horaAhora=fecha.getHours();// la uno al método getHours
+
+        if(horaAhora>=0 && hora<=12){// realizo la condición para que me retorne
+            return "Buenos días";
+        }
+        else if(horaAhora>=13 && hora<=20){
+            return "Buenas tardes";
+        }
+        else if(horaAhora>=21 && horaAhora<=24){
+            return "Buenas noches";
+        }
+
+    }
+
+    let hora = parseInt(prompt("Introduzca una hora de 0 a 24h: "));// Solicito hora
+    if(hora>=0 && hora<=24){// pongo condición para controlar error
+        document.write(saludo(hora));// muestro saludo en caso de que sea correcta la hora introducida
+    }else{
+        alert("Introduzca una hora correcta");// En caso contrario muestra el mensaje
+    }
+    
+   </script> 
+</body>
+</html>
