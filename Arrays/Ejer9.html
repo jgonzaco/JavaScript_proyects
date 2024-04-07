@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--9.	Buscar un determinado vegetal, le pido un nombre, y comprobar si esta, y si esta, devolver el índice-->
+
+    <script>
+         let vegetales = [
+            "Zanahoria",
+            "Brócoli",
+            "Calabacín",
+            "Tomate",
+            "Perejil"
+        ];
+        let vegetal=prompt("Digame un vegetal y le digo si está y la posición que tiene: ");
+
+        let encontrar = vegetales.find(i=>i===vegetal);
+        document.write(`${encontrar} se encuebtra en el listado <br>`);
+
+        let posicion = vegetales.findIndex(i=>i===vegetal);
+        document.write(`Su posición es ${posicion}`);
+    </script>
+</body>
+</html>

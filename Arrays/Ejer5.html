@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--5.	Hay que pedir valores numéricos 
+    si los valores son menores a 100 ingresarlos al principio del vector y los mayores o iguales a 100 ingresarlos al final. 
+    Se finaliza la carga de datos al ingresar el cero. 
+    Cuando sale del bucle extraer el último valor ingresado que es el cero del vector. Imprimir el vector en la página-->
+
+    <script>
+        let array=[];
+
+    let pregunta = parseInt(prompt("Introduzca valores numéricos, los valores < 100 se colocarán al principio y > 100 al final: "));
+        
+
+        while(pregunta!==0){
+            array.push(pregunta);// Se utiliza para insertar que introduce el usuario
+            pregunta = parseInt(prompt("Introduzca valores numéricos, los valores < 100 se colocarán al principio y > 100 al final: "));
+        }
+
+        let mayores = [];
+        let menores = [];
+
+        /*for(let i =0;i<array.length;i++){
+            if(array[i]<100){
+                menores.push(array[i]);
+            }else{
+                mayores.push(array[i]);
+            }
+        }*/
+
+        for(let valor of array){
+            if(valor<100){
+                menores.push(valor);
+            }else{
+                mayores.push(valor);
+            }
+        }
+
+        document.write(mayores.toString()+"<br>");
+        234435
+        document.write(menores.toString());
+
+        let valoresTotalesUnidos=menores.concat(mayores);
+
+        alert(valoresTotalesUnidos);
+        alert("El último valor del array es "  + mayores[mayores.length-1]);
+
+    </script>
+</body>
+</html>

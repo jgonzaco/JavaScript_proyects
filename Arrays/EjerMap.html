@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Map
+Crear un map de palabras en español y su traducción al ingles luego pedir por teclado una palabra en castellano y posteriormente mostrar su traducción al inglés
+Recorrer Map -->
+
+<script>
+     let peticion = prompt("Introduzca una de estas palabras (hello, stop, blue, red) y le mostraré su traducción: ");
+
+    let palabras=new Map();//inicializo map
+    palabras.set("hello","Hola");
+    palabras.set("stop","parar");
+    palabras.set("blue","azul");
+    palabras.set("red","rojo");
+
+   
+    if(palabras.has(peticion)){
+        document.write("TRADUCCION: "+peticion+" - "+palabras.get(peticion)+ "<br>");
+    }else{
+        document.write("La palabra introducida no existe <br>");
+    }
+
+    for(let valores of palabras.entries()){
+        document.write(valores+" ");
+    }
+</script>
+</body>
+</html>

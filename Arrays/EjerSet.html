@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Set
+Generar 10 números aleatorios comprendidos entre 1 y 50. Almacenar los mismos en un Set. Verificar luego si el conjunto tiene el valor 12.
+-->
+<script>
+    let numeros=new Set();
+
+    for(let i=1;i<=10;i++){
+        let aleatorios=Math.floor(Math.random()*51);
+        numeros.add(aleatorios);
+    }
+
+        for(let numero of numeros){
+            document.write(numero + " ");
+       }
+
+        if(numeros.has(12)){
+            document.write("El 12 se encuentra dentro del SET")
+        }else{
+            document.write("El 12 NO se encuentra dentro del SET");
+        }
+    
+</script>
+</body>
+</html>
