@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Dos partes
+o Establecer un 􀆡tulo del documento de forma dinámica
+o mostrar cada segundo la hora actual.
+o Permi􀆟r parar la hora.-->
+
+<script>
+    //let titulo=prompt("Introduzca el nombre del título: ");// Solicito un nombre para el título
+    //document.title=titulo;// Realizo el cambio mediante document.title asignándolo a titulo
+
+
+function horaActual(){
+    let fecha=new Date();
+   // document.write(fecha.getHours() + " : " + fecha.getMinutes()+" : " + fecha.getSeconds());
+   document.title=fecha.toLocaleTimeString();
+}
+let intervalo = setInterval(horaActual, 1000);
+
+function parar(){
+    clearTimeout(intervalo);
+}
+
+function reanudar(){
+    hora=setInterval(horaActual,1000);
+}
+</script>
+<h1>Titulo página dinámico</h1>
+<br>
+<button onclick="parar()">Parar</button>
+<button onclick="reanudar()">Reanudar</button>
+</body>
+</html>

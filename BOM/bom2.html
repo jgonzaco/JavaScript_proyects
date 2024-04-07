@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Crea una página web que realice las siguientes funciones desde la página principal:
+o Abrir ventana flotante
+o Abrir ventana flotante y detenerla
+o Cerrar ventana flotante
+o Dar foco a la ventana flotante
+o Quitar foco ventana nueva-->
+
+<button onclick="abrir()">Abrir Ventana</button>
+<button onclick="cerrar()">Cerrar Ventana</button>
+<button onclick="foco()">Foco</button>
+<button onclick="cerrarFoco()">Cerrar Foco</button>
+<button onclick="imprimir()">Imprimir</button>
+<script>
+    let ventanaAbierta;
+    function abrir(){
+        ventanaAbierta=window.open("https://www.trama.org", "VentanaFlotante", "width=600,height=400,left=100,top=100");    
+        }
+
+        function cerrar(){
+            ventanaAbierta.close();
+        }
+
+        function foco(){
+            ventanaAbierta.focus();
+        }
+
+        function cerrarFoco(){
+            ventanaAbierta.blur();
+        }
+        function imprimir(){
+            if (ventanaAbierta) {
+                ventanaAbierta.print();
+            } else {
+                alert("Primero abre la ventana antes de intentar imprimir.");
+            }
+        }
+</script>
+    
+</body>
+</html>
