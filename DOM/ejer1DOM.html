@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Disponer una etiqueta h1 con un mensaje. Luego dos botones que permitan cambiar el
+color y el tamaño de la fuente-->
+<h1 id="ejer1">Ejercicio 1 DOM</h1>
+<br>
+<button onclick = azul()> Cambio de color</button>
+<button onclick = tamanio()>Cambio de tamaño</button>
+
+
+<script>
+//Realizo la función para poder cambiar de color al azul.
+let azul = () =>{
+    let cambio = document.getElementById("ejer1");
+    cambio.style.color = "blue";
+}
+
+//Realizo la función para poder cambiar el tamaño.
+let tamanio = () =>{
+    let cambiar = document.getElementById("ejer1");
+    cambiar.style.fontSize = "80px";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Crear pagina y proceder a definir un atributo a un nodo de 􀆟po elemento pagina, 
+        
+crear un nodo 􀆟po elemento y definir el atributo href-->
+
+<p>
+    <a href="https://www.prueba.com">Mi enlace</a>
+</p>
+
+<script>
+    let padre=document.body;// Me establezco en el padre
+    let hijo = padre.firstElementChild;// después en el hijo que me interesa.
+    hijo.setAttribute("id","ejer5");// Introduzco el id = ejer5 en la etiqueta p.
+
+    let enlace=hijo.querySelector("a");//Seleciono dentro del hijo la etiqueta a.
+    enlace.setAttribute("class","prueba");// Una vez establecido, introduzco la clase y el valor.
+</script>
+
+</body>
+</html>

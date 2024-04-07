@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Permi􀆟r cambiar el tamaño de la fuente de un párrafo. Para esto crear tres botones
+(fuente pequeña (10), fuente mediana(13) y fuente grande(20))-->
+
+<p class="ejer2">Los animales o metazoos son los seres vivos que integran el reino animal (Animalia), uno de los cuatro reinos de seres vivos eucarióticos (
+    o sea, de organismos que tienen células con núcleo), y que se distinguen de las plantas, hongos y microorganismos. En general, los animales son seres vivos 
+    dotados de movimiento propio y autónomo, de un metabolismo basado en la respiración y de un sistema nervioso que les permite interactuar con su entorno.
+</p>
+<br>
+
+<button onclick=pequena()>Cambio Fuente Pequeña</button> 
+<button onclick=mediana()>Cambio Fuente Mediana</button> 
+<button onclick=grande()>Cambio Fuente Grande</button> 
+
+
+<script>
+
+    //Se crean las diferentes funciones para poder cambiar los tamaños
+     let pequena = () =>{
+        let cambioP = document.getElementsByClassName("ejer2")[0];// getElementsByClassName da como resultado un array, por lo que se requiere la primera posición [0].
+        cambioP.style.fontSize = "10px";// Se utiliza style.fontSize para poder realizar el cambio de tamaño.
+     }
+
+     let mediana = () =>{
+        let cambioM = document.getElementsByClassName("ejer2")[0];
+        cambioM.style.fontSize = "13px";
+     }
+
+     let grande = () =>{
+        let cambioG = document.getElementsByClassName("ejer2")[0];
+        cambioG.style.fontSize = "20px";
+     }
+
+
+</script>
+</body>
+</html>

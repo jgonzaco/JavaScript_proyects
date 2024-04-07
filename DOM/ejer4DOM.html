@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Confeccionar una página que contenga un div con tres párrafos. Luego acceder a la
+propiedad childNodes y verificar cuantos hijos tiene y de que tipo de nodos se tratan.-->
+
+<div id="ejer4">
+    <p>Según los resultados del Eurobarómetro de 2022, el medioambiente es la cuarta principal preocupación a nivel nacional y de la Unión Europea. 
+        Así que si alguna vez te has preguntado cómo ayudar a cuidar el medioambiente, 
+        te recomendamos seguir estos prácticos consejos en tu vida diaria, que además te ayudarán también a mejorar la economía de tu hogar. 
+        Cada acción cuenta.</p>
+
+    <p>El automóvil, también denominado auto, coche o carro según los países, es un vehículo motorizado con ruedas utilizado para el transporte. 
+        Está compuesto por diversas partes, como motor, chasis, carrocería y sistemas de dirección, frenos y suspensión. 
+        La mayoría de las definiciones de automóvil hacen referencia a los vehículos que circulan principalmente por las carreteras, 
+        con capacidad de una a ocho personas, cuentan con cuatro neumáticos y transportan principalmente a personas, antes que mercancías.</p>
+
+    <p>
+        El fútbol o también llamado soccer se conoce como uno de los deportes más jugados a nivel mundial, 
+        el cual consiste en un juego donde participan dos equipos que son conformados por 11 jugadores. 
+        En este deporte puede ser practicado por el género masculino como el femenino. 
+        Se puede considerar que la historia del fútbol inicio desde el año 1863 cuando se creó la primera fundación de fútbol.
+    </p>
+</div>
+
+<script>
+    //1.Acceder al padre
+    let padre = document.getElementById("ejer4");
+
+    //2. Acceder a los hijos
+    let hijos = padre.childNodes;
+
+    //3.Se recorren los hijos 
+    for( let i = 0; i < hijos.length; i++){
+        let hijo = hijos[i];
+
+        if(hijo.nodeType===1){// tipo de nodo que es el hijo. 1: Elemento HTML 3:Nodo de texto 8:nodo de comentario
+            document.write("El nodo " + i + " la etiqueta que tiene es " + hijo.nodeName + "<br>");// Se saca por pantalla
+        }
+        
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Se debe crear una página que contenga un div con 2 párrafos. Al presionar un botón
+insertar un nuevo párrafo al principio del div que con􀆟ene los 2 párrafos.-->
+
+<div id="ejer3">
+    <p>Según los resultados del Eurobarómetro de 2022, el medioambiente es la cuarta principal preocupación a nivel nacional y de la Unión Europea. 
+        Así que si alguna vez te has preguntado cómo ayudar a cuidar el medioambiente, 
+        te recomendamos seguir estos prácticos consejos en tu vida diaria, que además te ayudarán también a mejorar la economía de tu hogar. 
+        Cada acción cuenta.</p>
+
+    <p>El automóvil, también denominado auto, coche o carro según los países, es un vehículo motorizado con ruedas utilizado para el transporte. 
+        Está compuesto por diversas partes, como motor, chasis, carrocería y sistemas de dirección, frenos y suspensión. 
+        La mayoría de las definiciones de automóvil hacen referencia a los vehículos que circulan principalmente por las carreteras, 
+        con capacidad de una a ocho personas, cuentan con cuatro neumáticos y transportan principalmente a personas, antes que mercancías.</p>
+</div>
+
+<button onclick=introducir()>Insertar nuevo párrafo</button>
+
+<script>
+    let introducir = ()=>{
+        //Me sitúo en el padre
+        let padre=document.getElementById("ejer3");
+
+        let parrafo="Esto es un ejemplo a introducir";
+
+        //1. Se crea la etiqueta p
+        let nuevoParrafo = document.createElement("p");
+
+        //2.Creo un nuevo elemento de texto que se incluya en HTML
+        let introducirParrafo = document.createTextNode(parrafo);
+
+        //3.Enlazo el elemento de texto (variable anterior) con la etiqueta p
+        nuevoParrafo.appendChild(introducirParrafo);
+        
+
+        //4.Enlazo el párrafo en el div
+        padre.appendChild(nuevoParrafo);
+
+        // Se realiza un operador ternario. padre.firstCild devuelve el primer hijo, en el que si existe, lo introduce en el primero.
+        padre.firstChild ? padre.insertBefore(nuevoParrafo,padre.firstChild) : padre.appendChild(nuevoParrafo);
+    }
+
+</script>
+
+</body>
+</html>
