@@ -1,0 +1,62 @@
+/* Estilos para la tabla */
+table {
+    border-collapse: collapse; 
+    width: 100%; 
+  }
+  
+  /* Estilos para las celdas de la tabla */
+  td, th {
+    border: 3px solid blue; 
+    padding: 8px; 
+    text-align: left; 
+  }
+  #tabla {
+    display: none;
+}
+
+/*Estilo de imagen fondo*/
+#cuerpo {
+    background-size: cover; 
+    background-image: url("../img/fondo.png");
+    background-repeat: no-repeat;
+ }
+
+ /* Cambiar el tamaño de la letra en las celdas de datos */
+td {
+  font-size: 14px; 
+  font-family: Arial, sans-serif;
+}
+
+/* Cambiar el tamaño de la letra en las celdas de encabezado */
+th {
+  font-size: 16px; 
+  font-family: "Times New Roman", Times, serif; 
+}
+
+/* Estilos para ocultar los Pokémon iniciales y legendarios */
+#iniciales {
+  display:none;
+}
+#legendarios {
+  display:none;
+}
+
+/* Estilos para botones */
+button {
+  background-color: blue; 
+  color: #fff; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  font-weight: bold; 
+  text-transform: uppercase; 
+  transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+  margin-bottom: 2%;
+}
+
+/* Estilo al pasar el ratón sobre el botón */
+button:hover {
+  background-color: #0056b3; 
+}
