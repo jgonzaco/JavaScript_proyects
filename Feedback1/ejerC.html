@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--c) Realizar un programa en Javascript de forma que defina un párrafo (HTML) y tres botones: AZUL, VERDE, ROJO de forma que según el que pulse el usuario, 
+      haga que lo escrito en el párrafo se cambie al color del botón seleccionado.
+NOTA: utilizar las propiedades style.color de los objetos HTML aplicables a párrafo.-->
+
+    <p id="parrafo">
+      Jack Russel: El jack russell terrier proviene de Inglaterra y se llama así
+      por el reverendo John Russell, quien desarrolló la raza en el siglo XIX.
+      El reverendo Russell, conocido como Jack, sentía una profunda pasión por
+      la caza de zorros y buscaba desarrollar un perro terrier especialmente
+      adecuado para esta actividad.
+    </p>
+
+    <button onclick="elegir('azul')">AZUL</button>
+    <!--Creo los botones que me servirán para el cambio de color del párrafo-->
+    <button onclick="elegir('verde')">VERDE</button>
+    <button onclick="elegir('rojo')">ROJO</button>
+    <button onclick="elegir('original')">ORIGINAL</button>
+
+    <script>
+      // creo la función que me va a permitir realizar el cambio de color del párrafo.
+      function elegir(color) {
+        let parrafo = document.getElementById("parrafo"); // se utiliza la función getElemntById para enlazar el parro por el id
+
+        switch (color) {
+          case "azul":
+            parrafo.style.color = "blue"; // se vincula cambio con la función style.color para poder hacer efectivo el cambio de color
+            break;
+
+          case "verde":
+            parrafo.style.color = "green";
+            break;
+
+          case "rojo":
+            parrafo.style.color = "red";
+            break;
+
+          case "original":
+            parrafo.style.color = "black";
+            break;
+
+          default:
+            alert("No se ha elegido un caracter adecuado");
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>

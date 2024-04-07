@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--b) Realizar un programa en Javascript que presente 4 botones HTML:
+a. Sumar
+b. Restar
+c. Multiplicar
+d. Potencia
+Se le pedirán al usuario dos números, y dependiendo del botón pulsado por el usuario, el programa tendrá que calcular la operación seleccionada con los números introducidos.
+NOTA: para la operación de Potencia utilizar Math.pow(x,y)-->
+
+    <!-- Botones HTML -->
+    <button onclick="preguntas('+')">+</button>
+    <button onclick="preguntas('-')">-</button>
+    <button onclick="preguntas('*')">*</button>
+    <button onclick="preguntas('^')">^</button>
+
+    <script>
+      // Se solicitan dos números por pantalla, convirtiéndolos a enteros
+      function preguntas(operacion) {
+        // Se solicitan dos números por pantalla
+        let num1 = parseInt(prompt("Introduzca un primer número: "));
+        let num2 = parseInt(prompt("Introduzca un segundo número: "));
+
+        // Realizar la operación según el botón que se seleccione.
+        let resultado;
+        switch (operacion) {
+          case "+":
+            document.write(`El resultado de la suma es: ${num1 + num2}`);
+            break;
+
+          case "-":
+            document.write(`El resultado de la resta es: ${num1 - num2}`);
+            break;
+
+          case "*":
+            document.write(
+              `El resultado de la multiplicación es: ${num1 - num2}`
+            );
+            break;
+
+          case "^":
+            document.write(
+              `El resultado de la potencia es: ${Math.pow(num1, num2)}`
+            );
+            break;
+
+          default:
+            document.write("Elemento introducido es incorrecto o no válido"); // En el caso de que se introduzca un valor no válido se pondrá este mensaje.
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
