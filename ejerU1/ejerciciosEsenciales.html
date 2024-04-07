@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. Hacer un programa que pidiendo el lado de un cuadrado, mostrar por pantalla el perímetro del mismo 
+        //(El perímetro de un cuadrado se calcula multiplicando el valor del lado por cuatro)
+        let lado = prompt("Introduzca cuando mide un lado del cuadrado y le muestro el perímetro del mismo: ");
+        let perimetro = lado * 4;
+        document.write("El perímetro del cuadrado es " + perimetro);
+
+    </script>
+    <script>
+        // 2. Realizar un script en el cual se pedimos cuatro números, calcular e informar la suma de los dos primeros y el
+        //producto del tercero y el cuarto.
+        let num1=parseFloat(prompt("Introduzca el primer número: "));
+        let num2=parseFloat(prompt("Introduzca el segundo número: "));
+        let num3=parseFloat(prompt("Introduzca el tercero número: "));
+        let num4=parseFloat(prompt("Introduzca el cuarto número: "));
+
+        let suma1 = (num1 + num2);
+        document.write("La suma de los dos primeros números es: " + suma1);
+        let suma2=(num3+num4);
+        document.write(" y la suma de los siguientes números son: " + suma2);
+
+    </script>
+    <script>
+        //3. Otro script que pida el ingreso del precio de un artículo y la cantidad que lleva el cliente. Mostrar lo que debe
+        //abonar el comprador (Ingresar por teclado un precio sin decimales, es decir un entero: 2, 7, 90 etc.)
+        let precio=parseFloat(prompt("Introduzca el precio del producto: "));
+        let cantidad=parseFloat(prompt("Cantidad de productos que se lleva: "));
+        let pago=precio*cantidad;
+
+        document.write("Lo que tiene que pagar es " + pago +" €");
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Solicitar al usuario dos números y comprobar si non múltiplos o no
+        let num1=prompt("Introduzca el primer número: ");
+        let num2=prompt("Introduzca el segundo número: ");
+
+        if(isNaN(num1) || isNaN(num2)){
+            alert("Introduzca un número correcto");
+        }else{
+            if(num1%num2===0 || num2%num1===0){
+                document.write("Los números son múltiplos entre sí");
+            }else{
+                document.write("Los números NO son múltiplos entre sí");
+            }
+        }
+    </script>
+
+    <br>
+
+    <script>
+        // En este ejemplo el usuario entrará dos números. Debe devolver la diferencia entre el mayor y el menor
+        let numero1=parseFloat(prompt("Introduce el número 1: "));
+        let numero2=parseFloat(prompt("Introduce el número 2: "));
+
+        //Mediante la función Math.max o min coloco los números al mayor y menor.
+        let maximo= Math.max(numero1,numero2);
+        let minimo=Math.min(numero1,numero2);
+
+        let resultado=maximo-minimo
+
+        document.write("la diferencia entre el mayor y el menor es " + resultado);
+    </script>
+<br>
+    <script>
+        // En este ejercicio el script convertirá las notas numéricas de un examen en paabras: 0 - 4 suspenso, 5-6
+        //aprobado, 7-8 notable, 9-10 sobresaliente
+
+        let nota=prompt("Introduzca una nota de examen y le decimos lo que ha sacado: ");
+
+        switch(true){
+            case(nota>=0 && nota< 5):
+                document.write("SUSPENSO");
+                break;
+            
+
+            case(nota >=5 && nota <=6 ):
+                document.write("APROBADO");
+                break;
+            
+            case(nota>=7  && nota<=8):
+                document.write("NOTABLE");
+                break;
+
+            case(nota>=9 && nota<=10):
+                document.write("SOBRESALIENTE");
+                break;
+            default:
+                document.write("Nota no existe");
+                break;
+            
+        }
+        alert("La nota que ha sacado ha sido "+ nota);
+    </script>
+    <br>
+    <script>
+        // Pedir una hora, minuto y segundo y mostrar la hora en el segundo siguiente
+        let hora = parseFloat(prompt("Introduzca la hora: "));
+let minuto = parseFloat(prompt("Introduzca el minuto: "));
+let segundo = parseFloat(prompt("Introduzca el segundo: "));
+
+let totalSegundo = hora * 3600 + minuto * 60 + segundo;
+totalSegundo += 1;
+
+let horaNueva = Math.floor(totalSegundo / 3600) % 24;
+let minutosNuevos = Math.floor((totalSegundo % 3600) / 60);
+let segundosNuevos = totalSegundo % 60;
+
+document.write("La nueva hora es " + horaNueva + " horas, " + minutosNuevos + " minutos, y " + segundosNuevos + " segundos.");
+
+    </script>
+<br>
+<script>
+    // Pedir un String y mostrar true si tiene 5 caracteres o mas, caso contrario, mostrar false utilizar el operador ternario.
+   let palabra=prompt("Introduzca una palabra, si es mayor 5 saldrá true si no false: ");
+
+   let calculo = palabra.length >=5 ? true : false;
+   document.write(calculo);
+</script>
+
+</body>
+</html>

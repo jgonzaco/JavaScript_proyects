@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      
+/*12. Escribir la tabla de multiplicar del número que el usuario teclee. La tabla mostrará en diferentes líneas cada
+producto y el resultado en la forma a x b = ab.
+*/
+
+/*let numero=parseInt(prompt("Introduzca un número y se mostrará esa tabla: "));
+for(let i=1; i<=10;i++){
+     document.write((numero*i) + "<br>");
+}*/
+    </script>
+    <br>
+    <script>
+//13. Pedimos un número y mostrar su potencia n^2, repetir este proceso hasta que se ingrese un número negativo
+
+let numeros=parseInt(prompt("Introduzca un número y se sacará su pontencia, si es negativo se cierra: "));
+
+while(numeros>=0){
+    let potencia=Math.pow(numeros,2);
+    document.write(potencia+"<br>");
+    numeros=parseInt(prompt("Introduzca un número y se sacará su pontencia, si es negativo se cierra: "));
+}
+    </script>
+</body>
+</html>
